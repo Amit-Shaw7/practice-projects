@@ -1,0 +1,8 @@
+20240109	17:59:26	9e3c8ba5-c8b4-468a-b36b-86bb30ec30a2	ReferenceError: __dirname is not defined	GET	/	undefined
+20240109	17:59:38	21318ec8-a315-46ea-8a7c-1cb1cc30b651	ReferenceError: __dirname is not defined	GET	/	undefined
+20240109	19:59:27	23b475e5-3f72-488d-bce5-a6e57f17985c	TypeError: Cannot destructure property 'filename' of 'req.file' as it is undefined.	POST	/api/video/upload	undefined
+20240109	20:05:51	4fad11f1-95b9-4ba2-98f4-9cf44f2f691d	TypeError: Cannot destructure property 'filename' of 'req.file' as it is undefined.	POST	/api/video/upload	undefined
+20240109	20:13:16	e63b118f-af7e-4954-9dc5-fd61b5919b8e	MulterError: Unexpected field	POST	/api/video/upload	undefined
+20240109	20:21:34	de21dd58-e96e-4e82-b316-1dba3d8c2a4c	MulterError: Unexpected field	POST	/api/video/upload	undefined
+20240109	20:26:47	870d2704-06f7-4a47-9d7f-e930a9d11cef	MulterError: Unexpected field	POST	/api/video/upload	undefined
+20240109	20:37:23	25def81a-6248-4e81-8682-db7386a1e1a3	Error: ENOENT: no such file or directory, open 'D:\Job Projects\video-player\backend\uploads\1704812843058-reel5.mp4'	POST	/api/video/upload	undefined
