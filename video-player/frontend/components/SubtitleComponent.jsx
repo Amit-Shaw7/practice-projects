@@ -4,12 +4,12 @@ import React from 'react'
 // eslint-disable-next-line react/prop-types
 const SubtitleComponent = ({handleSubtitleArray , subtitleArray}) => {
     const [startTime, setStartTime] = React.useState("");
-    const [endtime, setEndtime] = React.useState("");
+    const [endTime, setendTime] = React.useState("");
     const [subtitle, setSubtitle] = React.useState("");
 
     const emptyFeilds = () => {
         setStartTime("");
-        setEndtime("");
+        setendTime("");
         setSubtitle("");
     }
 
@@ -17,8 +17,8 @@ const SubtitleComponent = ({handleSubtitleArray , subtitleArray}) => {
         setStartTime(event.target.value);
     };
 
-    const handleEndTime = (event) => {
-        setEndtime(event.target.value)
+    const handleendTime = (event) => {
+        setendTime(event.target.value)
     };
 
     const handleSubtitle = (event) => {
@@ -26,7 +26,7 @@ const SubtitleComponent = ({handleSubtitleArray , subtitleArray}) => {
     }
 
     const addInSubtitleArray = () => {
-        handleSubtitleArray(startTime, endtime, subtitle);
+        handleSubtitleArray(startTime, endTime, subtitle);
         emptyFeilds();
     }
 
@@ -34,7 +34,7 @@ const SubtitleComponent = ({handleSubtitleArray , subtitleArray}) => {
         <div>
             <div>
                 <input value={startTime} onChange={(e) => handleStartTime(e)} type="text" placeholder='start time' />
-                <input value={endtime} onChange={(e) => handleEndTime(e)} type="text" placeholder='endtime' />
+                <input value={endTime} onChange={(e) => handleendTime(e)} type="text" placeholder='endTime' />
                 <input value={subtitle} onChange={(e) => handleSubtitle(e)} type="text" placeholder='subtitle' />
             </div>
             <button onClick={addInSubtitleArray}>Add</button>
@@ -47,7 +47,7 @@ const SubtitleComponent = ({handleSubtitleArray , subtitleArray}) => {
                     subtitleArray?.map((item, idx) => (
                         <div key={idx}>
                             <input value={item.startTime} type="text" placeholder='start time' />
-                            <input value={item.endtime} type="text" placeholder='endtime' />
+                            <input value={item.endTime} type="text" placeholder='endTime' />
                             <input value={item.subtitle} type="text" placeholder='subtitle' />
                         </div>
                     ))

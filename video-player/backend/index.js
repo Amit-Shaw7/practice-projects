@@ -21,6 +21,7 @@ app.use(cors());
 // app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(logger);
+app.use(express.static(path.join(__dirname, 'media')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, "views", "welcome.html"));

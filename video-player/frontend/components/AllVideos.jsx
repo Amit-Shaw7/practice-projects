@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 
 const AllVideos = () => {
     const [allVideos, setAllVideos] = React.useState([]);
-    const [curVideo, setCurVideo] = React.useState("659d614c445b2bb68a44a2cf");
+    const [curVideo, setCurVideo] = React.useState("");
     const player = React.useRef();
     const [playing, setPlaying] = React.useState(false);
     const [path, setPath] = React.useState("");
@@ -31,8 +31,8 @@ const AllVideos = () => {
             if (response.status === 200) {
                 console.log(response.data.subtitles);
                 console.log(response.data.videoUrl);
-                setPath(response.data.subtitles);
-                setUrl(response.data.videoUrl);
+                setPath("httP://localhost:5000/" + response.data.video.subtitles);
+                setUrl("httP://localhost:5000/" + response.data.video.videoUrl);
             }
         } catch (error) {
             console.log(error);
@@ -40,11 +40,11 @@ const AllVideos = () => {
     }
 
     React.useEffect(() => {
-        getVideos();
+         getVideos();
     }, []);
 
     React.useEffect(() => {
-        getVideo();
+        curVideo && getVideo();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [curVideo]);
 

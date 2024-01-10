@@ -13,8 +13,8 @@ export const addVideo = asyncError(async (req, res, next) => {
     // Save video details in MongoDB
     const newVideo = new Video({
         title,
-        videoUrl: path,
-        subtitles : filenameFinal
+        videoUrl: `/uploads/${filename}`,
+        subtitles : `/subtitles/${filenameFinal}`
         // Add more fields as needed
     });
 
