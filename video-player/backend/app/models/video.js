@@ -9,7 +9,7 @@ const videoSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    subtitleFile : { 
+    subtitles : { 
         type : String,
         // required : true
     }

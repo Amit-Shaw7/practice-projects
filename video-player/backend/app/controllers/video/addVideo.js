@@ -1,14 +1,20 @@
 import { asyncError } from "../../../utils/errors/asyncError.js";
+import { convertToVtt } from "../../../utils/subtitles/createFile.js";
 import Video from "../../models/video.js";
 
 export const addVideo = asyncError(async (req, res, next) => {
     const { filename, path } = req.file;
-    const { title } = req.body;
+    const { title, subtitles } = req.body;
 
+    
+    const subtitlesInJSON  = JSON.parse(subtitles);
+
+    const filenameFinal = convertToVtt(subtitlesInJSON , filename);
     // Save video details in MongoDB
     const newVideo = new Video({
         title,
         videoUrl: path,
+        subtitles : filenameFinal
         // Add more fields as needed
     });
 
