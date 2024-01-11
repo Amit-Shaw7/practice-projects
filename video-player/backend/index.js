@@ -18,7 +18,6 @@ const MONGO_URI = process.env.MONGO_URI;
 connectToDB(MONGO_URI);
 
 app.use(cors());
-// app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(logger);
 app.use(express.static(path.join(__dirname, 'media')));

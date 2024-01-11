@@ -20,5 +20,5 @@ export const addVideo = asyncError(async (req, res, next) => {
 
     await newVideo.save();
 
-    res.status(200).send('Video uploaded successfully');
+    return res.status(201).send('Video uploaded successfully');
 })

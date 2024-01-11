@@ -1,14 +1,18 @@
-import './App.css'
-import VideoUploadComponent from '../components/VideoUpload'
-import AllVideos from '../components/AllVideos'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Videos from "./pages/Videos"
+import VideoDetails from "./pages/VideoDetails"
+import UploadVideo from "./pages/UploadVideo"
 
 function App() {
 
   return (
-    <>
-      <VideoUploadComponent />
-      <AllVideos />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" Component={Videos} />
+        <Route path="/video/upload" Component={UploadVideo} />
+        <Route path="/video/:id" Component={VideoDetails} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

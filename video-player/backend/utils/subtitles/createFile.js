@@ -9,7 +9,7 @@ export const convertToVtt = (subtitles, filename) => {
     fs.writeFileSync(dirPath, "WEBVTT\n\n");
 
     for (let i = 0; i < subtitles.length; i++) {
-        fs.appendFileSync(dirPath, `${i} \n${subtitles[i].startTime} --> ${subtitles[i].endTime}\n${subtitles[i].subtitle}\n\n`);
+        fs.appendFileSync(dirPath, `${i} \n${subtitles[i].startTime} --> ${subtitles[i].endTime}\n${subtitles[i].subtitleText}\n\n`);
     }
 
     return fileName;
