@@ -21,7 +21,7 @@ const Videos = () => {
         try {
             const response = await axios.get(url);
             if (response.status === 200) {
-                setVideos(response.data.videos);
+                setVideos(response?.data?.videos);
             }
         } catch (error) {
             alert("Error loading")
