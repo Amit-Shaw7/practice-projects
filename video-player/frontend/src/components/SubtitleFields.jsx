@@ -16,10 +16,12 @@ const SubtitleFields = ({ handleSubtitleArray }) => {
 
     const handleStartTimeChange = (e) => {
         setStartTime(e.target.value);
+        setStartTimeError("");
     };
 
     const handleEndTimeChange = (e) => {
         setEndTime(e.target.value);
+        setEndTimeError("");
     };
 
     const handleSubtitleTextChange = (e) => {
