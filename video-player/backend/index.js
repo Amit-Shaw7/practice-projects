@@ -1,18 +1,18 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { connectToDB } from './db.js';
 import path from 'path';
 import { error404 } from './middlewares/errors/error404.js';
 import { createError } from './middlewares/errors/createError.js';
 import { __dirname } from './globals.js';
 import VideoRouter from './app/routes/video.js';
 import { logger } from './middlewares/logger/logger.js';
+import { connectToDB } from './db.js';
 
-dotenv.config();
 const app = express();
 
 const PORT = process.env.PORT || 5000;
+dotenv.config();
 
 await connectToDB();
 
