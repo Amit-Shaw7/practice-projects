@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
-export const connectToDB = async (DB_URI) => {
+const MONGO_URI = process.env.MONGO_URI;
+export const connectToDB = async () => {
     let dbStatus = ''
     try {
-        const connected = await mongoose.connect(DB_URI);
+        const connected = await mongoose.connect(MONGO_URI);
         if (connected) {
             dbStatus = `*    DB Connection: OK`
             // if (process.env.NODE_ENV !== 'test') {
