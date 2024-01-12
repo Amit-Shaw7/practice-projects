@@ -7,12 +7,14 @@ import SubtitleFields from "../components/SubtitleFields";
 import Container from "../components/Container";
 import Button from "../components/Button";
 import SavedSubtitles from "../components/SavedSubtitles";
+import Loader from "../components/Loader";
 
 
 const UploadVideo = () => {
     const [subtitleArray, setSubtitleArray] = React.useState([]);
     const [file, setFile] = React.useState(null);
     const [fileError, setFileError] = React.useState("");
+    const [loading, setLoading] = React.useState(false);
 
 
     const handleFileChange = (e) => {
@@ -31,7 +33,11 @@ const UploadVideo = () => {
     }
 
     const handleUpload = async (e) => {
+        setLoading(true);
         e.preventDefault();
+        if(subtitleArray.length === 0){
+            alert("Please add some subtitles");
+        }
         if (!file) {
             setFileError(true);
             return;
@@ -45,12 +51,12 @@ const UploadVideo = () => {
             const response = await axios.post(url, formData, videoUploadHeader);
             if (response.status === 201) {
                 emptyAllFields();
-                alert('Video uploaded successfully');
+                alert("Video uploaded successfully");
             }
         } catch (error) {
             console.error('Error uploading video', error);
         }
-
+        setLoading(false);
     };
 
     const emptyAllFields = () => {
@@ -61,49 +67,56 @@ const UploadVideo = () => {
 
     return (
         <Container>
-            <div className="min-h-[87.5vh] w-full">
+            {
+                loading
+                    ?
+                    <Loader />
+                    :
+                    <div className="min-h-[87.5vh] w-full">
 
-                {/* <div className="flex flex-col gap-12"> */}
-                <form
-                    className="flex flex-col gap-5"
-                    onSubmit={handleUpload}
-                >
-                    <div className="flex justify-between items-center">
-                        <Heading title="Upload Video" />
-                        <Button
-                            type="submit"
-                            text="Upload"
-                        />
+                        {/* <div className="flex flex-col gap-12"> */}
+                        <form
+                            className="flex flex-col gap-5"
+                            onSubmit={handleUpload}
+                        >
+                            <div className="flex justify-between items-center">
+                                <Heading title="Upload Video" />
+                                <Button
+                                    type="submit"
+                                    text="Upload"
+                                />
+                            </div>
+
+                            <div className="flex items-center gap-5">
+                                <Input
+                                    // value={file}
+                                    handleChange={handleFileChange}
+                                    error={fileError}
+                                    type="file"
+                                    name="video"
+                                    label="Video"
+                                    required={true}
+                                    fileType="video/*"
+                                />
+
+                                <SubtitleFields
+                                    subtitleArray={subtitleArray}
+                                    handleSubtitleArray={handleSubtitleArray}
+                                />
+                            </div>
+                        </form>
+
+                        <div className="mt-12">
+                            <Heading
+                                title="Subtitles Added"
+                                size="small"
+                            />
+                            <SavedSubtitles subtitleArray={subtitleArray} />
+                        </div>
+                        {/* </div> */}
                     </div>
+            }
 
-                    <div className="flex items-center gap-5">
-                        <Input
-                            // value={file}
-                            handleChange={handleFileChange}
-                            error={fileError}
-                            type="file"
-                            name="video"
-                            label="Video"
-                            required={true}
-                            fileType="video/*"
-                        />
-
-                        <SubtitleFields
-                            subtitleArray={subtitleArray}
-                            handleSubtitleArray={handleSubtitleArray}
-                        />
-                    </div>
-                </form>
-
-                <div className="mt-12">
-                    <Heading
-                        title="Subtitles Added"
-                        size="small"
-                    />
-                    <SavedSubtitles subtitleArray={subtitleArray} />
-                </div>
-                {/* </div> */}
-            </div>
         </Container>
     )
 }

@@ -7,13 +7,16 @@ import Heading from '../components/Heading';
 import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 import NoVideos from '../components/NoVideos';
+import Loader from '../components/Loader';
 
 
 const Videos = () => {
     const [videos, setVideos] = React.useState([]);
+    const [loading, setLoading] = React.useState(false);
     const navigate = useNavigate();
 
     const fetchAllVideos = async () => {
+        setLoading(true);
         const url = `${server}/api/video/all`;
         try {
             const response = await axios.get(url);
@@ -24,6 +27,7 @@ const Videos = () => {
             alert("Error loading")
             console.log(error);
         }
+        setLoading(false);
     }
 
     const goToAddVideoPage = () => {
@@ -46,23 +50,32 @@ const Videos = () => {
             </div>
 
             {
-                videos?.length === 0
+                loading
                     ?
-                    <NoVideos />
+                    <Loader />
                     :
-                    <div
-                        id='video-container'
-                        className='w-full h-full grid justify-start gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-y-auto'
-                    >
-                        <>
-                            {
-                                videos?.map((video) => (
-                                    <Video video={video} key={video?._id} />
-                                ))
-                            }
-                        </>
+                    <div>
+                        {
+                            videos?.length === 0
+                                ?
+                                <NoVideos />
+                                :
+                                <div
+                                    id='video-container'
+                                    className='w-full h-full grid justify-start gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-y-auto'
+                                >
+                                    <>
+                                        {
+                                            videos?.map((video) => (
+                                                <Video video={video} key={video?._id} />
+                                            ))
+                                        }
+                                    </>
+                                </div>
+                        }
                     </div>
             }
+
         </Container>
     )
 }
