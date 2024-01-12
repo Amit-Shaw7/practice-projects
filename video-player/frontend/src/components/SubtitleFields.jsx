@@ -44,7 +44,7 @@ const SubtitleFields = ({ handleSubtitleArray }) => {
     return (
         <div
             id="subtitleFeilds"
-            className='flex flex-row gap-5'
+            className='flex flex-col gap-5 w-full items-center justify-center'
         >
             <Input
                 label="Start Time"
@@ -74,6 +74,7 @@ const SubtitleFields = ({ handleSubtitleArray }) => {
                 type="button"
                 text='Add Subtitle'
                 onClick={callHandleSubtitleArrayFn}
+                fullWidth
             />
         </div>
     )

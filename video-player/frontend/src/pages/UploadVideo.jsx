@@ -15,6 +15,7 @@ const UploadVideo = () => {
     const [file, setFile] = React.useState(null);
     const [fileError, setFileError] = React.useState("");
     const [loading, setLoading] = React.useState(false);
+    const [title, setTitle] = React.useState("");
 
 
     const handleFileChange = (e) => {
@@ -28,6 +29,10 @@ const UploadVideo = () => {
         setFile(file);
     };
 
+    const handleTitleChange = (event) => {
+        setTitle(event.target.value);
+    }
+
     const handleSubtitleArray = (startTime, endTime, subtitleText) => {
         setSubtitleArray([...subtitleArray, { startTime, endTime, subtitleText }]);
     }
@@ -35,7 +40,7 @@ const UploadVideo = () => {
     const handleUpload = async (e) => {
         setLoading(true);
         e.preventDefault();
-        if(subtitleArray.length === 0){
+        if (subtitleArray.length === 0) {
             alert("Please add some subtitles");
         }
         if (!file) {
@@ -45,6 +50,7 @@ const UploadVideo = () => {
         const url = `${server}/api/video/upload`;
         const formData = new FormData();
         formData.append('video', file);
+        formData.append('title', title);
         formData.append('subtitles', JSON.stringify(subtitleArray));
 
         try {
@@ -72,11 +78,11 @@ const UploadVideo = () => {
                     ?
                     <Loader />
                     :
-                    <div className="min-h-[87.5vh] w-full">
+                    <div className="min-h-[87.5vh] w-full bg-black">
 
                         {/* <div className="flex flex-col gap-12"> */}
                         <form
-                            className="flex flex-col gap-5"
+                            className="flex flex-col gap-5 w-full"
                             onSubmit={handleUpload}
                         >
                             <div className="flex justify-between items-center">
@@ -87,7 +93,7 @@ const UploadVideo = () => {
                                 />
                             </div>
 
-                            <div className="flex items-center gap-5">
+                            <div className="flex flex-col w-full items-center justify-center gap-5">
                                 <Input
                                     // value={file}
                                     handleChange={handleFileChange}
@@ -97,6 +103,15 @@ const UploadVideo = () => {
                                     label="Video"
                                     required={true}
                                     fileType="video/*"
+                                />
+
+                                <Input
+                                    handleChange={handleTitleChange}
+                                    type="text"
+                                    name="title"
+                                    label="Title"
+                                    required={true}
+                                    value={title}
                                 />
 
                                 <SubtitleFields

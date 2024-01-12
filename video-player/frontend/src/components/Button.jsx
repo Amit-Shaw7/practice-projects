@@ -17,7 +17,8 @@ const Button = (props) => {
          font-semibold 
          uppercase
          h-fit
-         rounded-md`
+         rounded-md
+         ${props.fullWidth ? 'w-[300px]' : "w-fit"}`
       }
     >
       {props.text}
@@ -33,4 +34,5 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   size: PropTypes.string,
+  fullWidth : PropTypes.bool
 }

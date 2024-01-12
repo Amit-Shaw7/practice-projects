@@ -15,6 +15,7 @@ const Input = ({ error, type, label, name, required, value, handleChange, fileTy
                      focus:ring-sky-500
                      focus:border-sky-500
                      ${error ? 'border-red-500' : 'border-slate-300'}
+                     w-[300px]
                      `
                 }
                 type={type}
